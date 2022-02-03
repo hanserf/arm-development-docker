@@ -1,7 +1,6 @@
-FROM python:3-bullseye
+FROM debian:bullseye
 
 LABEL \
-    python.version=3 \
     debian.version=bullseye
 
 LABEL Hans Erik Fjeld <hanse.fjeld@gmail.com>
@@ -13,9 +12,9 @@ RUN set -x &&\
     unzip \
     tar \
     locales \
+    git \
     make \
     autoconf \
-    bison \
     automake \
     flex \
     build-essential \
@@ -27,14 +26,8 @@ RUN set -x &&\
     xz-utils \
     gcc \
     cmake \
-    gcc-arm-none-eabi \
-    libprotobuf-dev \
-    protobuf-compiler \
-    python3-pip \
-    python3-setuptools \
-    && \
-    update-alternatives --install /usr/bin/python python /usr/bin/python3 10  &&\
-    ldconfig
+    gcc-arm-none-eabi &&\
+    ldconfig 
 
 RUN \
     echo "en_US.UTF-8 UTF-8" >/etc/locale.gen && \
